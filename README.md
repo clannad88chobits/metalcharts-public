@@ -64,12 +64,11 @@ pays, labels, dates de sortie) et sont enrichies par des calculs internes
 - Proposer une alternative moderne aux charts traditionnels
 - Offrir une interface rapide, claire et accessible
 - Rendre les données consultables et triables facilement
-- Développer un écosystème autour de MetalCharts (site + chaîne YouTube)
+- Développer un écosystème autour de MetalCharts 
 
 ## Démo
 
 Le site est actuellement en cours de développement et déployé sur Netlify.
-(Lien à ajouter lorsque le nom de domaine sera défini)
 
 ## À propos
 
