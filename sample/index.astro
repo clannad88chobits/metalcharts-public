@@ -1,0 +1,57 @@
+---
+/* Page autonome : pas de BaseLayout */
+---
+
+<!doctype html>
+<html lang="fr" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title data-i18n-title="index.title">MetalCharts — Hall of Fame</title>
+
+    <meta property="og:title" content="MetalCharts — Hall of Fame" />
+    <meta
+      property="og:description"
+      content="Classements Metal, Hall of Fame, Top 100, ArtistCharts, New Entries, Tri Albums."
+    />
+    <meta property="og:image" content="/assets/opengraph/hof.jpg" />
+    <meta property="og:type" content="website" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/styles/index.css" />
+  </head>
+
+  <body class="page-index" data-i18n-sections="index">
+    <div id="hof-container">
+      <div id="hof-liquid-gold" aria-hidden="true"></div>
+      <div id="hof-particles" aria-hidden="true"></div>
+      <div id="hof-display" aria-hidden="true"></div>
+
+      <div
+        id="entry-banner"
+        role="button"
+        tabindex="0"
+        data-i18n="index.entry_button"
+      >
+        Enter
+      </div>
+    </div>
+
+    <!-- Scripts externes -->
+    <script src="/js/lang.js" defer></script>
+    <script src="/hof/mosaic.js" defer></script>
+    <script src="/hof/halloffame.js" defer></script>
+
+    <!-- Script inline CORRIGÉ -->
+    <script is:inline>
+      const entry = document.getElementById("entry-banner");
+      entry.addEventListener("click", () => {
+        document.body.classList.add("fade-out");
+        setTimeout(() => {
+          window.location.href = "/metalcharts";
+        }, 800);
+      });
+    </script>
+  </body>
+</html>
