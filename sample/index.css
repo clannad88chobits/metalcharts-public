@@ -1,0 +1,349 @@
+/* =========================================================
+   INDEX — METALCHARTS (HALL OF FAME IMMERSIF)
+   Version premium corrigée (sans header, sans fixed)
+========================================================= */
+
+
+/* ---------------------------------------------------------
+   GLOBAL
+--------------------------------------------------------- */
+
+/* ---------------------------------------------------------
+   PAGE INDEX — MODE IMMERSIF (toujours dark)
+   --------------------------------------------------------- */
+
+.page-index {
+    /* Palette sombre dédiée à l'expérience Hall of Fame */
+    --bg-main: #0b0b0b;
+    --bg-darker: #000000;
+    --bg-alt: #111111;
+    --bg-card: #1a1a1a;
+
+    /* Typographie */
+    --text-main: #ffffff;
+    --text-light: #e6e6e6;
+
+    /* Effets lumineux */
+    --gold: #d4a017;
+    --gold-glow: rgba(212, 160, 23, 0.45);
+}
+
+/* Structure globale de la page immersive */
+body.page-index {
+    margin: 0;
+    padding: 0;
+    background: var(--bg-darker);
+    color: var(--text-light);
+    font-family: var(--font-body, 'Poppins', sans-serif);
+
+    /* Empêche tout scroll */
+    overflow: hidden;
+}
+
+/* ---------------------------------------------------------
+   HALL OF FAME — CONTAINER
+   (corrigé pour immersion sans header)
+--------------------------------------------------------- */
+
+#hof-container {
+    width: 100%;
+    height: 100vh;
+    /* plein écran */
+    padding-top: 0;
+    /* plus de header */
+
+    position: relative;
+    /* tu ne veux pas fixed */
+    overflow: hidden;
+
+    background: radial-gradient(circle at center,
+            var(--bg-card) 0%,
+            var(--bg-darker) 100%);
+
+    animation: fadeIn 0.8s ease forwards;
+    opacity: 0;
+}
+
+
+/* Zone où les disques apparaissent */
+#hof-display {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 3;
+}
+
+
+/* ---------------------------------------------------------
+   DISQUES ANIMÉS
+--------------------------------------------------------- */
+
+.hof-album {
+    position: absolute;
+    opacity: 0;
+    transform: scale(0.85) rotate(var(--tilt-angle, 0deg));
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    pointer-events: none;
+}
+
+.hof-album img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+
+    animation: hof-spin 6s linear infinite;
+}
+
+.hof-album.zoom {
+    transition: transform 6s ease-out, opacity 1s ease-out;
+}
+
+@keyframes hof-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.hof-album::after {
+    content: "";
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+            rgba(255, 255, 255, 0.15),
+            transparent 70%);
+    z-index: -1;
+    filter: blur(10px);
+}
+
+
+/* ---------------------------------------------------------
+   LOGO OVERLAY
+--------------------------------------------------------- */
+
+.hof-logo-overlay {
+    position: absolute;
+    inset: 0;
+    background-size: 40%;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease;
+    pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------
+   BOUTON D’ENTRÉE
+--------------------------------------------------------- */
+
+#entry-banner {
+    position: absolute;
+    bottom: 40px;
+    /* centré visuellement sans header */
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 80%;
+    max-width: 600px;
+
+    padding: 25px 0;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+
+    color: var(--text-light);
+    overflow: hidden;
+
+    --dx: 0px;
+    --dy: 0px;
+    box-shadow:
+        0 0 25px rgba(255, 255, 255, 0.15),
+        var(--dx) var(--dy) 35px rgba(255, 255, 255, 0.25);
+
+    transition: box-shadow 0.1s ease, background 0.25s ease;
+    z-index: 4;
+}
+
+#entry-banner:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+
+/* ---------------------------------------------------------
+   PARTICULES
+--------------------------------------------------------- */
+
+#hof-particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+#hof-particles::before,
+#hof-particles::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    opacity: 0.35;
+    animation: particles-move 18s linear infinite;
+}
+
+#hof-particles::before {
+    background-image:
+        radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(2px 2px at 80px 120px, rgba(255, 255, 255, 0.5), transparent),
+        radial-gradient(2px 2px at 150px 60px, rgba(255, 255, 255, 0.4), transparent),
+        radial-gradient(2px 2px at 40px 160px, rgba(255, 255, 255, 0.5), transparent);
+}
+
+#hof-particles::after {
+    background-image:
+        radial-gradient(3px 3px at 50px 80px, rgba(255, 255, 255, 0.3), transparent),
+        radial-gradient(3px 3px at 120px 40px, rgba(255, 255, 255, 0.25), transparent),
+        radial-gradient(3px 3px at 180px 150px, rgba(255, 255, 255, 0.3), transparent),
+        radial-gradient(3px 3px at 90px 180px, rgba(255, 255, 255, 0.25), transparent);
+    animation-duration: 28s;
+}
+
+@keyframes particles-move {
+    from {
+        transform: translateY(0) translateX(0);
+    }
+
+    to {
+        transform: translateY(-200px) translateX(200px);
+    }
+}
+
+
+/* ---------------------------------------------------------
+   OR LIQUIDE
+--------------------------------------------------------- */
+
+#hof-liquid-gold {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at 30% 30%, var(--gold-glow), transparent 60%),
+        radial-gradient(circle at 70% 70%, var(--gold-glow), transparent 60%),
+        radial-gradient(circle at 50% 50%, var(--gold), transparent 70%);
+
+    filter: blur(25px);
+    animation: gold-liquid-flow 18s ease-in-out infinite alternate;
+}
+
+@keyframes gold-liquid-flow {
+    0% {
+        transform: scale(1.1) translate(-20px, -10px) rotate(0deg);
+        opacity: 0.55;
+    }
+
+    50% {
+        transform: scale(1.25) translate(10px, 20px) rotate(20deg);
+        opacity: 0.75;
+    }
+
+    100% {
+        transform: scale(1.1) translate(-15px, 5px) rotate(-10deg);
+        opacity: 0.6;
+    }
+}
+
+/* Empêche les problèmes de scroll sur mobile */
+.page-index {
+    overflow: hidden;
+}
+
+/* Bouton d’entrée — mobile first */
+#entry-banner {
+    bottom: max(40px, env(safe-area-inset-bottom));
+    word-break: break-word;
+}
+
+/* Amélioration mobile */
+@media (max-width: 600px) {
+    #entry-banner {
+        font-size: 1.35rem;
+        padding: 16px 0;
+        width: 85%;
+    }
+}
+
+/* Très petits écrans (iPhone SE, Android compact) */
+@media (max-width: 380px) {
+    #entry-banner {
+        font-size: 1.2rem;
+        padding: 14px 0;
+        width: 90%;
+    }
+}
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+--------------------------------------------------------- */
+
+@media (max-width: 600px) {
+    #entry-banner {
+        font-size: 1.5rem;
+        padding: 18px 0;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   ANIMATION D’APPARITION
+--------------------------------------------------------- */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ---------------------------------------------------------
+   FADE-OUT CINÉMATIQUE — PAGE INDEX
+   --------------------------------------------------------- */
+
+.page-index.fade-out {
+    animation: indexFadeOut 0.8s ease forwards;
+    pointer-events: none;
+}
+
+@keyframes indexFadeOut {
+    0% {
+        opacity: 1;
+        filter: blur(0px);
+    }
+
+    100% {
+        opacity: 0;
+        filter: blur(4px);
+    }
+}
