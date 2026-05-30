@@ -3,6 +3,10 @@ IN ENGLISH
 # MetalCharts — Public Showcase
 Public repository showcasing the MetalCharts project.
 
+![Last Commit](https://img.shields.io/github/last-commit/clannad88chobits/metalcharts-public)
+![Repo Size](https://img.shields.io/github/repo-size/clannad88chobits/metalcharts-public)
+![Stars](https://img.shields.io/github/stars/clannad88chobits/metalcharts-public?style=social)
+
 🌐 Website: https://metalcharts.net
 
 MetalCharts is an independent project providing music charts dedicated to Metal.
